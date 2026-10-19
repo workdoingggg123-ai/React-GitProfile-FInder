@@ -173,7 +173,7 @@ function handleRetry() {
                     message={error}
                     onRetry={handleRetry}
                 />
-            )}s
+            )}
         </>
     )
 }
