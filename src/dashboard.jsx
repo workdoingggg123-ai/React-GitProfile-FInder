@@ -1,6 +1,6 @@
 import { useState } from "react"
 import ErrorPage from "./error";
-import { Repos } from "../../repoesdata/repoes";
+import { Repos } from "../repoesdata/repoes";
 function Dashboard() {
       let [username , setUsername] = useState("");
     const [profile, setProfile] = useState(null);
