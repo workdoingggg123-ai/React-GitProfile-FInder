@@ -81,7 +81,7 @@ function handleRetry() {
                 <img src="data:image/svg+xml;utf8,%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2358A6FF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%3Ccircle%20cx%3D%2210.8%22%20cy%3D%2210.8%22%20r%3D%227%22%3E%3C%2Fcircle%3E%0A%20%20%3Cpath%20d%3D%22m16%2016%205%205%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A" alt="search_img   " />
                <input type="search" name="Search" id="Search" placeholder="Search Github UserName..." value={username}    onChange={(event) =>
                         setUsername(event.target.value) }/>
-            <button id="searchbutton" onClick={loading_data} >Search</button>
+            <button id="searchbutton" onClick={loading_data} style={{cursor:"pointer"}} >Search</button>
              </section>
               
              <main>
@@ -100,7 +100,7 @@ function handleRetry() {
                             </span>
                             </div>
                             
-                            <p>{profile? date_new: "Created Profil "}</p>
+                            <p>{profile? `created at: ${date_new}`: "Created Profile "}</p>
 
                         </div>  
                 <section className="github-info">
@@ -108,7 +108,7 @@ function handleRetry() {
 
 
                    <div className="stat">
-                <p className="stat-label">Repos</p>
+                <p className="stat-label">repository</p>
                  <p className="stat-value">{profile? profile.public_repos: "0"}</p>
                 </div>
 
@@ -129,7 +129,7 @@ function handleRetry() {
                 <section className="other-info">
                     <div className="add-info">
                         <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%238B949E%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%3Cpath%20d%3D%22M20%2010c0%205-8%2012-8%2012S4%2015%204%2010a8%208%200%201%201%2016%200Z%22%3E%3C%2Fpath%3E%0A%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2210%22%20r%3D%222.5%22%3E%3C%2Fcircle%3E%0A%3C%2Fsvg%3E" alt="" />
-                         <p>{ profile? profile.location: "None"}</p>
+                         <p>{  profile.location ?? "None Available!"}</p>
                     </div>
                      <div className="add-info">
                         <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%238B949E%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%0A%20%20%3Cpath%20d%3D%22M2%2012h20M12%202a15%2015%200%200%201%200%2020M12%202a15%2015%200%200%200%200%2020%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E" alt="" />
@@ -141,7 +141,7 @@ function handleRetry() {
                          <p>  {profile?.twitter_username? (<a href={`https://x.com/${profile.twitter_username}`} target="_blank">x.com/{profile.twitter_username.replaceAll("dot" , ".")} </a>): "None"}</p>
                     </div> <div className="add-info">
                         <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%238B949E%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%3Crect%20x%3D%223%22%20y%3D%227%22%20width%3D%2218%22%20height%3D%2214%22%20rx%3D%222%22%3E%3C%2Frect%3E%0A%20%20%3Cpath%20d%3D%22M8%207V4h8v3M3%2012h18M10%2012v2h4v-2%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E" alt="" />
-                         <p>{profile?.company ? profile.company:"Not Provided"}</p>
+                         <p>{ profile.company ?? "Not Provided"}</p>
                     </div>
                
                 </section>
