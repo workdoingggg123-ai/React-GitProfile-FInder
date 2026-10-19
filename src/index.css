@@ -1,459 +1,733 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color: white;
-  font-family: 'Inter', sans-serif;
+/* =========================
+   1. RESET & GLOBAL STYLES
+========================= */
+
+:root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --card-secondary: #212b3a;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --blue: #58a6ff;
+    --green: #238636;
+    --red: #f85149;
 }
 
-body{
-  background-color: #0D1117;
-    color: #E6EDF3;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     min-height: 100vh;
     padding: 30px 16px;
-
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.5;
 }
 
-h1{
-  color: white;
-  text-align: center;
-  
+img {
+    display: block;
+    max-width: 100%;
 }
 
-
-
-.Search img {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
+a {
+    color: var(--blue);
+    overflow-wrap: anywhere;
 }
 
-#Search {
-    flex: 1;
-    min-width: 0;
-    padding: 8px 0;
-
-    background: transparent;
-    color: white;
-    border: none;
-    outline: none;
-    font-size: 16px;
+button,
+input {
+    font: inherit;
 }
 
-.Search:focus-within {
-    border-color: #58A6FF;
+h1 {
+    text-align: center;
+    color: var(--text);
+    font-size: 32px;
+    font-weight: 700;
+    margin: 18px 0;
 }
+
+/* =========================
+   2. LOGO
+========================= */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.logo img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo p {
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* =========================
+   3. SEARCH BAR
+========================= */
 
 .Search {
     display: flex;
     align-items: center;
     gap: 12px;
 
+    width: 100%;
     max-width: 500px;
-    width: 90%;
+    min-width: 0;
+
     margin: 20px auto;
+    padding: 10px 12px;
 
-    padding: 12px 16px;
-    background-color: #161B22;
-    border: 1px solid #30363D;
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 12px;
-}
-#searchbutton{
-  margin: 0px 5px;
-  background-color: #58A6FF;
-  width: 80px;
-  padding: 5px;
-  border-radius: 10px;
-  border: none;
+
+    transition: border-color 0.2s ease;
 }
 
-.error-page {
-    max-width: 500px;
-    width: 90%;
-    margin: 60px auto;
-    padding: 40px 24px;
-    text-align: center;
-    background-color: #161B22;
-    border: 1px solid #30363D;
-    border-radius: 16px;
+.Search:focus-within {
+    border-color: var(--blue);
 }
 
-.error-page h1 {
-    color: #F85149;
-    font-size: 42px;
-    margin-bottom: 12px;
+.Search img {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
 }
 
-.error-page h2 {
-    color: #E6EDF3;
-    margin-bottom: 12px;
+#Search {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+
+    padding: 8px 0;
+
+    background: transparent;
+    color: var(--text);
+    border: none;
+    outline: none;
+    font-size: 15px;
 }
 
-.error-page p {
-    color: #8B949E;
-    margin-bottom: 24px;
+#Search::placeholder {
+    color: var(--muted);
 }
 
-.error-page button {
-    background-color: #238636;
-    color: white;
+#searchbutton {
+    flex: 0 0 auto;
+    min-width: 76px;
+    padding: 9px 12px;
+
+    background: var(--blue);
+    color: #0d1117;
+
     border: none;
     border-radius: 8px;
-    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
     cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+#searchbutton:hover {
+    opacity: 0.85;
+}
+
+#searchbutton:focus-visible,
+.error-page button:focus-visible,
+.repo-card a:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+}
+
+/* =========================
+   4. MAIN PROFILE CARD
+========================= */
+
+main {
+    width: 100%;
+    max-width: 850px;
+    min-width: 0;
+
+    margin: 28px auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+.cointainer-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 28px;
+}
+
+/* Profile image */
+
+.sideimg {
+    flex: 0 0 90px;
+    min-width: 0;
 }
 
 #sideimg {
-  display: block;
     width: 90px;
     height: 90px;
+
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #30363D;
+    border: 2px solid var(--border);
 }
-main{
+
+/* Right-side profile information */
+
+.info {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* =========================
+   5. NAME, USERNAME & BIO
+========================= */
+
+.user-basic-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+
     width: 100%;
-  max-width: 850px;
-margin: 30px auto;
-border: none;
-gap: 20px;
-background: #161B22;
-border: 1px solid #30363D;
-border-radius: 16px;
+    min-width: 0;
 }
-.cointainer-main{
- display: flex;
-gap: 20px;
-width: 100%;
-padding: 28px;   
+
+.username {
+    flex: 1 1 200px;
+    min-width: 0;
 }
-.user-basic-info{
-  display: flex;
-  justify-content:space-between;
-  align-items: flex-start;
-  gap: 12px;
- 
-}
-.info{
-  flex: 1;
+
+.username p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    line-height: 1.6;
 }
 
 .username p:first-child {
-    font-size: 20px;
-    font-weight: bold;
-    color: #E6EDF3;
-    margin: 10px 0px;
-
+    margin: 0 0 3px;
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 700;
 }
+
+.username p:nth-child(2) {
+    margin-bottom: 12px;
+    color: var(--blue);
+    font-size: 14px;
+}
+
+.username p:nth-child(2) a {
+    text-decoration: none;
+}
+
+.username p:nth-child(2) a:hover {
+    text-decoration: underline;
+}
+
+/* Bio text */
 
 .username p:last-child {
-    font-size: 14px;
-    color: #58A6FF;
-
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
 }
 
-.user-basic-info  p {
-    color: #8B949E;
+/* Account creation date */
+
+.user-basic-info > p {
+    flex: 0 1 auto;
+    max-width: 100%;
+
+    color: var(--muted);
     font-size: 12px;
-    flex-shrink: 0;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
-.github-info{
-    background-color: #39475a;
-   display: flex;
-   justify-content: space-evenly;
-    gap: 30px;
-    padding: 20px;
-    margin: 20px 0px ;
-    border-radius: 20px;
+/* =========================
+   6. REPOSITORY / FOLLOWER STATS
+========================= */
+
+.github-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 24px 0;
+    padding: 18px 20px;
+
+    background: var(--card-secondary);
+    border: 1px solid rgba(139, 148, 158, 0.12);
+    border-radius: 14px;
 }
 
 .stat {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
+    min-width: 0;
 }
 
 .stat-label {
-    color: #8B949E;
-    font-size: 12px;
-}
-
-.stat-value {
-    color: #E6EDF3;
-    font-size: 20px;
-    font-weight: 700;
-}
-.other-info{
-    background-color: #161B22;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    font-size: 10px;
-}
-
-.add-info{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    
-}
-
-.add-info img{
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-}
-
-
-.add-info p {
+    color: var(--muted);
     font-size: 12px;
     overflow-wrap: anywhere;
 }
 
-#errorimg{
-    border-radius: 30px;
-    width: 150px;
-    height: 90px;
-    object-fit: cover;
-
+.stat-value {
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
-.logo{
-    display: flex;
-    max-width: 300px;
-    align-items: center;
-    gap: 20px;
+/* =========================
+   7. LOCATION / WEBSITE / X / COMPANY
+========================= */
 
-}
-
-.logo img{
-    width: 40px;
-    height: 40px;
-}
-
-.logo p{ 
-    font-size: medium;
-    font-weight: 400;
-}
-
-
-.contrubtion-box{
-     display: flex;
-     flex-direction: column;
-     gap: 20px;
-    padding: 30px;
-    width: min-content;
-    margin: auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-.contrubtion-box p{
-    text-align:start;
-    font-weight: 300;
-    font-size: larger;
-}
-
-
-
-/* repos */
-
-
-.user_repoes {
-    width: 100%;
-    margin-top: 25px;
+.other-info {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 18px 20px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.add-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.add-info img {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.add-info p {
+    flex: 1;
+    min-width: 0;
+
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.add-info a {
+    color: var(--blue);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-decoration: none;
+}
+
+.add-info a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   8. CONTRIBUTION SECTION
+========================= */
+
+.contrubtion-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 0 28px 28px;
+
+    box-shadow: none;
+}
+
+.contrubtion-box > p {
+    color: var(--text);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.greenbox {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    background: #0d1117;
+}
+
+.greenbox img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    object-fit: contain;
+}
+
+/* =========================
+   9. REPOSITORIES GRID
+========================= */
+
+.repodata_user {
+    width: 100%;
+    min-width: 0;
+}
+
+.user_repoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+
+    width: 100%;
+    min-width: 0;
+    margin-top: 4px;
 }
 
 .user_repoes h2 {
     grid-column: 1 / -1;
-    color: #f0f6fc;
-    font-size: 24px;
-    margin: 0 0 5px;
+    color: var(--text);
+    font-size: 22px;
+    margin-bottom: 4px;
 }
 
 .repo-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+
     min-width: 0;
+    padding: 18px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .repo-card:hover {
-    transform: translateY(-4px);
-    border-color: #58a6ff;
+    transform: translateY(-3px);
+    border-color: var(--blue);
 }
 
 .repo-card h3 {
-    color: #58a6ff;
-    font-size: 18px;
-    margin: 0;
+    color: var(--blue);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .repo-card p {
-    color: #8b949e;
-    font-size: 14px;
+    color: var(--muted);
+    font-size: 13px;
     line-height: 1.6;
-    margin: 0;
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .repo-card a {
     display: inline-block;
-    width: fit-content;
+    align-self: flex-start;
+
+    max-width: 100%;
     margin-top: auto;
-    padding: 9px 14px;
-    background: #238636;
-    color: #ffffff;
+    padding: 9px 12px;
+
+    background: var(--green);
+    color: white;
+
+    text-align: center;
     text-decoration: none;
+    overflow-wrap: anywhere;
+
     border-radius: 7px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    transition: background 0.2s ease;
 }
 
 .repo-card a:hover {
     background: #2ea043;
 }
 
+/* Empty repositories / errors */
+
 .user_repoes > p {
     grid-column: 1 / -1;
-    color: #8b949e;
+    color: var(--muted);
     text-align: center;
-    padding: 20px;
+    padding: 16px;
+    overflow-wrap: anywhere;
 }
 
+/* Programming language */
+
 .language {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex-wrap: wrap;
 }
 
 .language img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
-/* Tablet */
+.language span {
+    color: var(--text);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   10. ERROR PAGE
+========================= */
+
+.error-page {
+    width: 100%;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 36px 24px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+}
+
+.error-page h1 {
+    color: var(--red);
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.error-page h2 {
+    color: var(--text);
+    font-size: 21px;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.error-page p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+    overflow-wrap: anywhere;
+}
+
+.error-page button {
+    padding: 10px 20px;
+    background: var(--green);
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.error-page button:hover {
+    background: #2ea043;
+}
+
+#errorimg {
+    width: 300px;
+    height: 150px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: auto;
+}
+
+/* =========================
+   11. TABLET
+========================= */
+
 @media (max-width: 768px) {
     body {
         padding: 24px 14px;
     }
 
-    main {
+    .logo {
         max-width: 100%;
+    }
+
+    main {
+        margin: 24px auto;
     }
 
     .cointainer-main {
+        gap: 18px;
         padding: 22px;
-        gap: 16px;
     }
 
     .github-info {
-        gap: 16px;
-        padding: 16px;
+        padding: 16px 12px;
+        gap: 10px;
     }
 
-    .contrubtion-box {
-        width: 100%;
-        padding: 20px;
+    .stat-value {
+        font-size: 19px;
     }
 
-    .greenbox img {
-        max-width: 100%;
-        height: auto; 
-        
-    }
-
-   
     .other-info {
         gap: 16px;
     }
 
-    .user_repoes {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .contrubtion-box {
+        padding: 0 22px 22px;
+    }
+
+    .repo-card {
+        padding: 15px;
     }
 }
 
-/* Mobile */
+/* =========================
+   12. MOBILE
+========================= */
+
 @media (max-width: 600px) {
     body {
         padding: 20px 10px;
     }
 
     h1 {
-        font-size: 26px;
+        font-size: 27px;
+        margin: 16px 0;
+    }
+
+    .logo img {
+        width: 32px;
+        height: 32px;
     }
 
     .Search {
-        width: 100%;
         gap: 8px;
-        padding: 10px 12px;
+        padding: 9px 10px;
+        margin: 18px auto;
+    }
+
+    .Search img {
+        width: 21px;
+        height: 21px;
+        flex-basis: 21px;
     }
 
     #Search {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     #searchbutton {
-        width: auto;
-        min-width: 65px;
-        padding: 8px;
-        margin: 0;
+        min-width: 62px;
+        padding: 9px 8px;
+        font-size: 12px;
     }
 
     main {
         margin: 20px auto;
+        border-radius: 13px;
     }
 
     .cointainer-main {
         flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
         padding: 18px;
-        gap: 18px;
+    }
+
+    .sideimg {
+        flex: 0 0 auto;
     }
 
     #sideimg {
-        width: 75px;
-        height: 75px;
+        width: 76px;
+        height: 76px;
+    }
+
+    .info {
+        width: 100%;
     }
 
     .user-basic-info {
-        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .username {
+        width: 100%;
+        flex: none;
     }
 
     .username p:first-child {
-        font-size: 18px;
-        overflow-wrap: anywhere;
+        font-size: 19px;
+    }
+
+    .username p:nth-child(2) {
+        font-size: 13px;
     }
 
     .user-basic-info > p {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .github-info {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        padding: 14px 10px;
-        margin: 16px 0;
+        gap: 8px;
+        margin: 18px 0;
+        padding: 15px 8px;
+        border-radius: 12px;
     }
 
     .stat {
-        gap: 6px;
-        min-width: 0;
+        gap: 5px;
     }
 
     .stat-label {
@@ -462,15 +736,15 @@ padding: 28px;
 
     .stat-value {
         font-size: 17px;
-        overflow-wrap: anywhere;
     }
 
     .other-info {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
     }
 
     .add-info img {
+        flex-basis: 20px;
         width: 20px;
         height: 20px;
     }
@@ -479,37 +753,22 @@ padding: 28px;
         font-size: 12px;
     }
 
-    .logo {
-        gap: 12px;
-    }
-
-    .logo img {
-        width: 32px;
-        height: 32px;
-    }
-
-    .error-page {
-        margin: 35px auto;
-        padding: 28px 16px;
-    }
-
-    .error-page h1 {
-        font-size: 34px;
-    }
-
     .contrubtion-box {
-        padding: 16px 8px;
-        gap: 14px;
+        padding: 0 14px 18px;
+        gap: 16px;
     }
 
-    .contrubtion-box p {
-        font-size: 17px;
+    .contrubtion-box > p {
+        font-size: 18px;
+    }
+
+    .greenbox {
+        padding: 8px;
     }
 
     .user_repoes {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin-top: 20px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 13px;
     }
 
     .user_repoes h2 {
@@ -519,8 +778,20 @@ padding: 28px;
     .repo-card {
         padding: 16px;
     }
+
+    .error-page {
+        margin: 35px auto;
+        padding: 28px 16px;
+    }
+
+    .error-page h1 {
+        font-size: 32px;
+    }
 }
 
+/* =========================
+   13. VERY SMALL SCREENS
+========================= */
 
 @media (max-width: 360px) {
     body {
@@ -528,12 +799,26 @@ padding: 28px;
     }
 
     .cointainer-main {
-        padding: 12px;
+        padding: 13px;
+    }
+
+    .Search {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    #Search {
+        font-size: 12px;
+    }
+
+    #searchbutton {
+        min-width: 55px;
+        padding: 8px 6px;
     }
 
     .github-info {
-        gap: 6px;
-        padding: 12px 6px;
+        gap: 5px;
+        padding: 12px 5px;
     }
 
     .stat-label {
@@ -544,20 +829,22 @@ padding: 28px;
         font-size: 15px;
     }
 
-    #sideimg {
-        width: 60px;
-        height: 60px;
+    .contrubtion-box {
+        padding: 0 10px 14px;
     }
 
-    .username p:first-child {
-        font-size: 16px;
+    .repo-card {
+        padding: 13px;
     }
+}
 
-    .user-basic-info > p {
-        font-size: 9px;
-    }
 
-    .repo-card h3 {
-        font-size: 16px;
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }

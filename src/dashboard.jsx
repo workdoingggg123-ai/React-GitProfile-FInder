@@ -10,7 +10,7 @@ function Dashboard() {
     const [loading, setLoading] = useState(false);
     const [date_new,setDate] = useState(null)
     const [error, setError] = useState("");
-
+   const [imageError, setImageError] = useState(false);
     function formatDate(dateString) {
     const date = new Date(dateString);  
     setDate(date.toLocaleDateString("en-IN"));
@@ -34,6 +34,7 @@ async function loading_data() {
   `https://api.github.com/users/${name}`
 
 );
+   
 
         if (!data.ok) {
             if (data.status === 404) {
@@ -152,9 +153,15 @@ function handleRetry() {
              <section className="contrubtion-box">
                     <p>Contribution</p>
                       <div className="greenbox">
-                    <img
-       src={`https://ghchart.rshah.org/${profile? profile.login : ""}`}
-/>
+                     {!imageError && profile?.login ? (
+        <img
+          src={`https://ghchart.rshah.org/${profile.login}`}
+          alt="GitHub contribution graph"
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <p>Contribution data not available.</p>
+      )}
                 </div>
                 <div className="repodata_user">
                     <Repos 
