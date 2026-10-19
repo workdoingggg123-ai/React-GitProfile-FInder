@@ -375,7 +375,7 @@ padding: 28px;
     .greenbox img {
         max-width: 100%;
         height: auto; 
-        filter: grayscale(1) brightness(0.3);
+        
     }
 
    
@@ -521,7 +521,7 @@ padding: 28px;
     }
 }
 
-/* Small mobile screens */
+
 @media (max-width: 360px) {
     body {
         padding: 16px 8px;
