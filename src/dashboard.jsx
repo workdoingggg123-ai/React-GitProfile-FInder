@@ -13,10 +13,11 @@ function Dashboard() {
 
   function formatDate(dateString) {
     const date = new Date(dateString);
-     return date
+     return date.toLocaleDateString()
   }
 
   async function loading_data() {
+    setLoading(true);
     const name = username.replaceAll(" ", "");
 
     if (!name) {
@@ -26,7 +27,6 @@ function Dashboard() {
       return;
     }
 
-    setLoading(true);
     setError("");
 
     try {
@@ -51,12 +51,18 @@ function Dashboard() {
       }
 
       const response = await data.json();
+       if (response.items.length === 0) {
+        throw new Error(
+          `Invalid Name To Search`
+        );
+        
+      }
       SetReletedUsers(response);
     } catch (err) {
       SetReletedUsers(null);
       setError(err.message || "Unable to load the GitHub profile.");
-    } 
-  }
+    }
+}
 
 
   async function load_profil(userinfo) {
@@ -68,8 +74,6 @@ function Dashboard() {
       SetReletedUsers(null);
       return;
     }
-
-    setLoading(true);
     setError("");
 
     try {
@@ -89,17 +93,17 @@ function Dashboard() {
             "GitHub's request limit may have been reached. Try again later.",
           );
         }
+        
 
         throw new Error("Something went wrong while fetching the profile.");
       }
 
       const response = await data.json();
       setProfile(response);
+
     } catch (err) {
       SetReletedUsers(null);
       setError(err.message || "Unable to load the GitHub profile.");
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -108,13 +112,14 @@ function Dashboard() {
     setProfile(null);
     SetReletedUsers(null);
     setUsername("");
-  }
+    setLoading(false)
+  } 
 
   return (
     <>
       <div className="releted-users">
   <>
-    {reletedUsers?.items?.length > 0 && loading && (
+    {reletedUsers?.items?.length > 0 && loading && !error &&(
       <>
         <h4>{reletedUsers?.items.length} Users Found</h4>
         {reletedUsers.items.map((allusers) => (
@@ -125,7 +130,7 @@ function Dashboard() {
 
             <div className="users-info">
               <h3>{allusers.login}</h3>
-              <button onClick={() => load_profil(allusers.login)}>
+              <button onClick={() => {load_profil(allusers.login)  ; setLoading(false)}}>
                 View Profile
               </button>
             </div>
