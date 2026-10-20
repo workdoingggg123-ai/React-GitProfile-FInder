@@ -585,11 +585,70 @@ main {
     border-radius: 20px;
     margin: auto;
 }
+.releted-users {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin-top: 24px;
+}
 
-/* =========================
-   11. TABLET
-========================= */
+.img-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  min-width: 0;
+  transition: 0.2s ease;
+}
 
+.img-info:hover {
+  border-color: #58a6ff;
+  transform: translateY(-3px);
+}
+
+.profileimg {
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+}
+
+#sideimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.users-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.users-info h3 {
+  color: #e6edf3;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.users-info button {
+  padding: 7px 12px;
+  background: #238636;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.users-info button:hover {
+  background: #2ea043;
+}
 @media (max-width: 768px) {
     body {
         padding: 24px 14px;
